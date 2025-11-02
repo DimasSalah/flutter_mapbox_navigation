@@ -1,39 +1,47 @@
-#
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
 Pod::Spec.new do |s|
   s.name             = 'flutter_mapbox_navigation'
-  s.version          = '0.2.2'
+  s.version          = '0.3.0'
   s.summary          = 'Turn-By-Turn Navigation for Flutter using Mapbox Navigation SDK'
   s.description      = <<-DESC
-Add Turn By Turn Navigation to Your Flutter Application Using MapBox. Unofficial Fork.
+Add Turn By Turn Navigation to Your Flutter Application Using MapBox. Fixed for compatibility with mapbox_maps_flutter 2.12.0
                        DESC
   s.homepage         = 'https://github.com/YOUR_USERNAME/flutter_mapbox_navigation'
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'YOUR_USERNAME' => 'your.email@example.com' }
   s.source           = { :path => '.' }
-  s.source_files = 'Classes/**/*'
+  s.source_files     = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
   
-  # Update ke versi yang kompatibel dengan mapbox_maps_flutter 2.12.0
-  s.dependency 'MapboxMaps', '~> 11.16'
-  s.dependency 'MapboxCommon', '~> 24.16'
-  s.dependency 'MapboxCoreMaps', '~> 11.16'
-  s.dependency 'Turf', '~> 4.0'
-  
-  # Navigation dependencies - cari versi yang kompatibel
-  s.dependency 'MapboxCoreNavigation', '~> 3.0'
-  s.dependency 'MapboxNavigation', '~> 3.0'
-  
+  # Platform requirements
   s.platform = :ios, '14.0'
   s.ios.deployment_target = '14.0'
-  s.swift_version = '5.0'
+  s.swift_version = '5.9'
   
-  # Tambahan untuk menghindari warning
+  # PENTING: Di v3, MapboxNavigation sudah include semuanya
+  # Jadi HANYA depend ke MapboxNavigation saja
+  # JANGAN tambahkan MapboxCoreNavigation karena sudah tidak exist!
+  
+  # Main navigation dependency
+  s.dependency 'MapboxNavigation', '~> 3.4'
+  
+  # Map dependencies - untuk kompatibilitas dengan mapbox_maps_flutter
+  s.dependency 'MapboxMaps', '~> 11.16'
+  
+  # MapboxCommon akan otomatis terinstall via MapboxNavigation & MapboxMaps
+  # Tapi kita bisa explicit untuk memastikan versi
+  s.dependency 'MapboxCommon', '~> 24.16'
+  
+  # Build settings
   s.pod_target_xcconfig = {
     'DEFINES_MODULE' => 'YES',
-    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386'
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386',
+    'SWIFT_VERSION' => '5.9',
+    'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES'
   }
-  s.swift_version = '5.0'
+  
+  # Framework search paths
+  s.xcconfig = {
+    'OTHER_LDFLAGS' => '-framework MapboxNavigation'
+  }
 end
