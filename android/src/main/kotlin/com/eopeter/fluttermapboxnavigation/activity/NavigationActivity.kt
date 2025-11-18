@@ -9,6 +9,7 @@ import android.os.Bundle
 
 import org.json.JSONObject
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.R as AppCompatR
 import com.eopeter.fluttermapboxnavigation.FlutterMapboxNavigationPlugin
 import com.eopeter.fluttermapboxnavigation.R
 import com.eopeter.fluttermapboxnavigation.databinding.NavigationActivityBinding
@@ -84,7 +85,7 @@ class NavigationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(R.style.Theme_AppCompat_NoActionBar)
+        setTheme(AppCompatR.style.Theme_AppCompat_NoActionBar)
         binding = NavigationActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.navigationView.addListener(navigationStateListener)

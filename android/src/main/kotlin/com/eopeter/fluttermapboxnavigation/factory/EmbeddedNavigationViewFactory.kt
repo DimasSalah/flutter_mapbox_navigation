@@ -3,6 +3,7 @@ package com.eopeter.fluttermapboxnavigation.factory
 import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
+import androidx.appcompat.R as AppCompatR
 import com.eopeter.fluttermapboxnavigation.R
 import com.eopeter.fluttermapboxnavigation.databinding.NavigationActivityBinding
 import com.eopeter.fluttermapboxnavigation.models.views.EmbeddedNavigationMapView
@@ -32,7 +33,7 @@ class EmbeddedNavigationViewFactory(
 
         view.initialize()
 
-        activity.setTheme(R.style.Theme_AppCompat_NoActionBar)
+        activity.setTheme(AppCompatR.style.Theme_AppCompat_NoActionBar)
 
         return view
     }

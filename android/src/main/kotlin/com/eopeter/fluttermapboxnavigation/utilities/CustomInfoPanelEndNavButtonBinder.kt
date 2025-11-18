@@ -1,6 +1,7 @@
 package com.eopeter.fluttermapboxnavigation.utilities
 
 import android.app.Activity
+import android.view.View
 import android.view.ViewGroup
 import com.eopeter.fluttermapboxnavigation.activity.NavigationLauncher
 import com.eopeter.fluttermapboxnavigation.models.MapBoxEvents
@@ -27,6 +28,8 @@ class CustomInfoPanelEndNavButtonBinder(
         button.updateMargins(
             right = button.resources.getDimensionPixelSize(R.dimen.mapbox_infoPanel_paddingEnd)
         )
+        // Hide the button
+        button.visibility = View.GONE
 
         return object : UIComponent() {
             override fun onAttached(mapboxNavigation: MapboxNavigation) {

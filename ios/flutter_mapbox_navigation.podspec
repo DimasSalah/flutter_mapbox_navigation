@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.description      = <<-DESC
 Add Turn By Turn Navigation to Your Flutter Application Using MapBox.
                        DESC
-  s.homepage         = 'https://github.com/YOUR_USERNAME/flutter_mapbox_navigation'
+  s.homepage         = 'https://github.com/DimasSalah/flutter_mapbox_navigation'
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'YOUR_USERNAME' => 'your.email@example.com' }
   s.source           = { :path => '.' }
